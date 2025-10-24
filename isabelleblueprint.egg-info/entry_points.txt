@@ -1,0 +1,2 @@
+[console_scripts]
+isabelleblueprint = isabelleblueprint.client:safe_cli

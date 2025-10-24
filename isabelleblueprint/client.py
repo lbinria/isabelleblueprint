@@ -235,20 +235,20 @@ assert repo is not None
 
 # locate lakefile
 
-lakefile_lean_path = Path(repo.working_dir)/"lakefile.lean"
-lakefile_toml_path = Path(repo.working_dir)/"lakefile.toml"
+# lakefile_lean_path = Path(repo.working_dir)/"lakefile.lean"
+# lakefile_toml_path = Path(repo.working_dir)/"lakefile.toml"
 
-lakefile: Optional[Lakefile] = None
+# lakefile: Optional[Lakefile] = None
 
-if lakefile_lean_path.exists() and lakefile_toml_path.exists():
-    warning("Both lakefile.lean and lakefile.toml exist; using lakefile.lean")
-    lakefile = LakefileLean(lakefile_lean_path)
-elif lakefile_lean_path.exists():
-    lakefile = LakefileLean(lakefile_lean_path)
-elif lakefile_toml_path.exists():
-    lakefile = LakefileToml(lakefile_toml_path)
-else:
-    error(f"Could not find lakefile.lean or lakefile.toml in {repo.working_dir}")
+# if lakefile_lean_path.exists() and lakefile_toml_path.exists():
+#     warning("Both lakefile.lean and lakefile.toml exist; using lakefile.lean")
+#     lakefile = LakefileLean(lakefile_lean_path)
+# elif lakefile_lean_path.exists():
+#     lakefile = LakefileLean(lakefile_lean_path)
+# elif lakefile_toml_path.exists():
+#     lakefile = LakefileToml(lakefile_toml_path)
+# else:
+#     error(f"Could not find lakefile.lean or lakefile.toml in {repo.working_dir}")
 
 # blueprint root directory
 
@@ -259,7 +259,7 @@ def new() -> None:
     """
     Create a new Lean blueprint in the given repository.
     """
-    assert lakefile is not None
+    # assert lakefile is not None
     loader = FileSystemLoader(Path(__file__).parent/"templates")
     env = Environment(loader=loader, variable_start_string='{|', variable_end_string='|}',
                       comment_start_string='{--', comment_end_string='--}')
@@ -285,13 +285,13 @@ def new() -> None:
             name = "Anonymous"
 
 
-    libs = lakefile.parse_libs()
-    if not libs:
-        warning(
-            "Could not find Lean library names in lakefile. Will not propose to setup continuous integration.")
-        can_try_ci = False
+    # libs = lakefile.parse_libs()
+    # if not libs:
+    #     warning(
+    #         "Could not find Lean library names in lakefile. Will not propose to setup continuous integration.")
+    #     can_try_ci = False
 
-    manifest_path = Path(repo.working_dir)/"lake-manifest.json"
+    # manifest_path = Path(repo.working_dir)/"lake-manifest.json"
 
     # Will now try to guess the GitHub url
     github = ""
@@ -340,11 +340,11 @@ def new() -> None:
 
     console.print("\nGeneral information about the project", style="title")
     config['title'] = ask("Project title", default="My formalization project")
-    if len(libs) > 1:
-        config['lib_name'] = ask(
-            "Lean library name", choices=libs, default=libs[0])
-    else:
-        config['lib_name'] = libs[0]
+    # if len(libs) > 1:
+    #     config['lib_name'] = ask(
+    #         "Lean library name", choices=libs, default=libs[0])
+    # else:
+    #     config['lib_name'] = libs[0]
     config['author'] = ask(
         "Author ([info]use \\and to separate authors if needed[/])", default=name)
 
@@ -391,19 +391,19 @@ def new() -> None:
     console.print("\nLake configuration updating", style="title")
     console.print("The next two questions are crucial for the blueprint infrastructure. Please use the default answer unless you are really sure you already did the necessary work.")
 
-    if confirm("Modify lakefile and lake-manifest to allow checking declarations exist?",
-               default=True):
-        lakefile.add_checkdecls()
-        console.print("Ok, lakefile is edited. Will now get the declaration check library. Note this may be long if you just created the project and did not yet get Mathlib.")
-        subprocess.run("lake update checkdecls",
-                       cwd=str(blueprint_root.parent), check=False, shell=True)
+    # if confirm("Modify lakefile and lake-manifest to allow checking declarations exist?",
+    #            default=True):
+    #     lakefile.add_checkdecls()
+    #     console.print("Ok, lakefile is edited. Will now get the declaration check library. Note this may be long if you just created the project and did not yet get Mathlib.")
+    #     subprocess.run("lake update checkdecls",
+    #                    cwd=str(blueprint_root.parent), check=False, shell=True)
 
-    if confirm("Modify lakefile and lake-manifest to allow building the documentation?",
-               default=True):
-        lakefile.add_docgen()
-        console.print("Ok, lakefile is edited. Will now get the doc-gen library.")
-        subprocess.run("lake -R -Kenv=dev update doc-gen4",
-                       cwd=str(blueprint_root.parent), check=False, shell=True)
+    # if confirm("Modify lakefile and lake-manifest to allow building the documentation?",
+    #            default=True):
+    #     lakefile.add_docgen()
+    #     console.print("Ok, lakefile is edited. Will now get the doc-gen library.")
+    #     subprocess.run("lake -R -Kenv=dev update doc-gen4",
+    #                    cwd=str(blueprint_root.parent), check=False, shell=True)
         
     home_page_created = False
 
@@ -444,7 +444,8 @@ def new() -> None:
             f"GitHub workflow file created at {path/'blueprint.yml'}")
         workflow_files.append(path/'blueprint.yml')
 
-    files_to_add = [out_dir, lakefile.path, manifest_path] + workflow_files
+    # files_to_add = [out_dir, lakefile.path, manifest_path] + workflow_files
+    files_to_add = [out_dir] + workflow_files
 
     if home_page_created:
         files_to_add.append(jekyll_out_dir)
