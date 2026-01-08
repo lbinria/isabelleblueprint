@@ -57,7 +57,7 @@ See https://pygraphviz.github.io/documentation/stable/install.html otherwise.
 
 Then, assuming you have a sane python environment, you only need to run:
 ```
-pip install leanblueprint
+pip install isabelleblueprint
 ```
 Note this will automatically install plasTeX and the other needed python
 packages.
@@ -65,14 +65,14 @@ packages.
 ## Upgrading
 
 ```
-pip install -U leanblueprint
+pip install -U isabelleblueprint
 ```
 
 will upgrade to the latest version.
 
 ## Starting a blueprint
 
-This package provides a command line tool `leanblueprint` that automates in
+This package provides a command line tool `isabelleblueprint` that automates in
 particular the creation of a blueprint for your Lean project. This tool is not
 mandatory in any way. Its goal is to make it easy to create a blueprint without
 worrying about choosing a file layout or a continuous integration and deployment
@@ -80,11 +80,11 @@ setup. As every one–size-fits-all tool, it is fairly opinionated. It assumes i
 particular that your project repository is hosted on Github and you want to host
 its blueprint on github.io.
 
-If you don’t want to use the `leanblueprint` command line tool, you can use
+If you don’t want to use the `isabelleblueprint` command line tool, you can use
 this plugin as any other plasTeX plugin, using
-`plastex --plugins leanblueprint my_file.tex` (not recommended).
+`plastex --plugins isabelleblueprint my_file.tex` (not recommended).
 
-In order to use the `leanblueprint` tool, you need to already have a Lean
+In order to use the `isabelleblueprint` tool, you need to already have a Lean
 project created using lake. In addition, your blueprint will be easier to
 configure if you have at least one commit in the git repository of your project
 and you have already configured its GitHub git remote (GitHub displays
@@ -100,7 +100,7 @@ screenshot.
 Assuming your project is ready and GitHub is configured, from your project
 folder run 
 ```
-leanblueprint new
+isabelleblueprint new
 ```
 You will then have to answer some questions to configure your blueprint. If
 unsure, accept all default answers by simply hitting Enter for each question.
@@ -119,30 +119,30 @@ The API documentation will be at `https://user_name.github.io/repo_name/docs/`
 
 ## Local compilation
 
-Assuming you used the `leanblueprint` command line tool to create your blueprint
-(or at least that you use the same file layout), you can use `leanblueprint` to
+Assuming you used the `isabelleblueprint` command line tool to create your blueprint
+(or at least that you use the same file layout), you can use `isabelleblueprint` to
 build your blueprint locally. The available commands are:
 
-* `leanblueprint pdf` to build the pdf version (this requires a TeX installation
+* `isabelleblueprint pdf` to build the pdf version (this requires a TeX installation
   of course).
-* `leanblueprint web` to build the web version
-* `leanblueprint checkdecls` to check that every Lean declaration name that appear
+* `isabelleblueprint web` to build the web version
+* `isabelleblueprint checkdecls` to check that every Lean declaration name that appear
   in the blueprint exist in the project (or in a dependency of the project such
   as Mathlib). This requires a compiled Lean project, so make sure to run `lake build` beforehand.
-* `leanblueprint all` to run the previous three commands.
-* `leanblueprint serve` to start a local webserver showing your local blueprint
+* `isabelleblueprint all` to run the previous three commands.
+* `isabelleblueprint serve` to start a local webserver showing your local blueprint
   (this sounds silly but web browsers paranoia makes it impossible to simply
   open the generated html pages without serving them). The url you should use
   in your browser will be displayed and will probably be `http://0.0.0.0:8000/`,
   unless the port 8000 is already in use.
 
 Note: plasTeX does not call BibTeX. If you have a bibliography, you should use
-`leanblueprint pdf` before `leanblueprint web` to get it to work in the web
+`isabelleblueprint pdf` before `isabelleblueprint web` to get it to work in the web
 version (and redo it when you add a reference).
 
 ## Editing the blueprint
 
-Assuming you used the `leanblueprint` command line tool to create your blueprint
+Assuming you used the `isabelleblueprint` command line tool to create your blueprint
 (or at least that you use the same file layout), the source of your blueprint
 will be in the `blueprint/src` subfolder of your Lean project folder.
 
@@ -222,7 +222,7 @@ The above macros are by far the most important, but there are a couple more.
 ## Blueprint configuration
 
 Most of the configuration is handled during the blueprint creation if you used
-the `leanblueprint` client. But some of it can be changed by LaTeX macros
+the `isabelleblueprint` client. But some of it can be changed by LaTeX macros
 in the web version of LaTeX preamble (in the file `web.tex` if you use the
 default layout).
 
@@ -246,7 +246,7 @@ default layout).
 
 ## Acknowledgments
 
-The continuous integration configuration template used by `leanblueprint new`
+The continuous integration configuration template used by `isabelleblueprint new`
 is based on the work of many people who had to write such a configuration by
 hand in the past, including Yakov Pechersky, Ben Toner, Sky Wilshaw, Yaël Dillies
 and Utensil Song. It also got contributions from Pietro Monticone.

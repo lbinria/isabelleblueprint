@@ -218,7 +218,7 @@ def error(msg: str) -> NoReturn:
 @click.version_option()
 def cli(python_debug: bool) -> None:
     """Command line client to manage Lean blueprints.
-    Use leanblueprint COMMAND --help to get more help on any specific command."""
+    Use isabelleblueprint COMMAND --help to get more help on any specific command."""
     global debug
     debug = python_debug
 
@@ -558,6 +558,6 @@ def safe_cli():
 
 
 if __name__ == "__main__":
-    # This allows `python3 -m leanblueprint.client`.
+    # This allows `python3 -m isabelleblueprint.client`.
     # This is useful for when python is on the path but its installed scripts are not
     safe_cli()
