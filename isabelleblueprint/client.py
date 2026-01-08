@@ -229,7 +229,7 @@ repo: Optional[Repo] = None
 try:
     repo = Repo(".", search_parent_directories=True)
 except InvalidGitRepositoryError:
-    error("Could not find a Lean project. Please run this command from inside your project folder.")
+    error("Could not find a git repository project. Please run `git init` or run this command from inside your project folder.")
 
 assert repo is not None
 
@@ -268,7 +268,7 @@ def new() -> None:
     can_try_ci = True
 
     if repo is None:
-        error("Could not find a Lean project. Please run this command from inside your project folder.")
+        error("Could not find a git project. Please run `git init` or this command from inside your project folder.")
 
     if repo.is_dirty():
         error("The repository contains uncommitted changes. Please clean it up before creating a blueprint.")
@@ -388,8 +388,10 @@ def new() -> None:
         console.print(
             "\nBlueprint source successfully created in the blueprint folder :tada:\n")
 
-    console.print("\nLake configuration updating", style="title")
-    console.print("The next two questions are crucial for the blueprint infrastructure. Please use the default answer unless you are really sure you already did the necessary work.")
+    # Documentation linking here !
+
+    # console.print("\nLake configuration updating", style="title")
+    # console.print("The next two questions are crucial for the blueprint infrastructure. Please use the default answer unless you are really sure you already did the necessary work.")
 
     # if confirm("Modify lakefile and lake-manifest to allow checking declarations exist?",
     #            default=True):
