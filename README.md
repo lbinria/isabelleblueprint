@@ -1,4 +1,4 @@
-# Lean blueprints
+# Isabelle blueprints
 
 This is a [plasTeX](https://github.com/plastex/plastex/) plugin allowing
 to write blueprints for Lean 4 projects.

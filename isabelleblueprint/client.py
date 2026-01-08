@@ -217,7 +217,7 @@ def error(msg: str) -> NoReturn:
               help='Display python tracebacks in case of error.')
 @click.version_option()
 def cli(python_debug: bool) -> None:
-    """Command line client to manage Lean blueprints.
+    """Command line client to manage Isabelle blueprints.
     Use isabelleblueprint COMMAND --help to get more help on any specific command."""
     global debug
     debug = python_debug
@@ -257,14 +257,14 @@ blueprint_root = Path(repo.working_dir)/"blueprint"
 @cli.command()
 def new() -> None:
     """
-    Create a new Lean blueprint in the given repository.
+    Create a new Isabelle blueprint in the given repository.
     """
     # assert lakefile is not None
     loader = FileSystemLoader(Path(__file__).parent/"templates")
     env = Environment(loader=loader, variable_start_string='{|', variable_end_string='|}',
                       comment_start_string='{--', comment_end_string='--}')
 
-    console.print("\nWelcome to Lean blueprint\n", style="title")
+    console.print("\nWelcome to Isabelle blueprint\n", style="title")
     can_try_ci = True
 
     if repo is None:

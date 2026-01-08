@@ -1,5 +1,5 @@
 """
-Package Lean blueprint
+Package Isabelle blueprint
 
 This depends on the depgraph plugin. This plugin has to be installed but then it is
 used automatically.
@@ -292,7 +292,7 @@ def ProcessOptions(options, document):
     def make_legend() -> None:
         """
         Extend the dependency graph legend defined by the depgraph plugin
-        by adding information specific to Lean blueprints. This is registered
+        by adding information specific to Isabelle blueprints. This is registered
         as a post-parse callback to allow users to redefine colors and their 
         descriptions.
         """

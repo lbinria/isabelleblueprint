@@ -22,7 +22,7 @@ Requires-Dist: Jinja2>=3.1.0
 Requires-Dist: GitPython>=3.1.28
 Dynamic: license-file
 
-# Lean blueprints
+# Isabelle blueprints
 
 This is a [plasTeX](https://github.com/plastex/plastex/) plugin allowing
 to write blueprints for Lean 4 projects.
